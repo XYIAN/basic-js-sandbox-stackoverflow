@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./_dHeader.css";
 /**
- * Created by Kyle Xyian Dilbeck for stack overflow answers x
+ * Created by Kyle Xyian Dilbeck for stack overflow answers
+ * Get a good answer? Follow me on github or linkedin to get more help and examples!
  * @date 1/2/2024 - 9:25:49 PM
  */
 export const DynamicHeader = () => {
