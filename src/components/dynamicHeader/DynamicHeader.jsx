@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./_dHeader.css";
 /**
- * Created by Kyle Xyian Dilbeck for stack overflow answers
+ * Created by XYIAN for stack overflow answers
  * Get a good answer? Follow me on github or linkedin to get more help and examples!
  * @date 1/2/2024 - 9:25:49 PM
  */
 export const DynamicHeader = () => {
-  const [headerColor, setHeaderColor] = useState("black");
+  const [headerStyle, setHeaderStyle] = useState({
+    backgroundColor: "black",
+    color: "white",
+  });
 
   const handleScroll = () => {
     const header = document.getElementById("sticky-header");
@@ -19,7 +22,10 @@ export const DynamicHeader = () => {
         rect.top <= header.offsetHeight &&
         rect.bottom >= header.offsetHeight
       ) {
-        setHeaderColor(section.dataset.color);
+        setHeaderStyle({
+          backgroundColor: section.dataset.color,
+          color: section.dataset.textColor,
+        });
       }
     });
   };
@@ -33,22 +39,27 @@ export const DynamicHeader = () => {
   }, []);
 
   const sections = [
-    { color: "white", content: "Section 1" },
-    { color: "black", content: "Section 2" },
-    { color: "white", content: "Section 3" },
+    { color: "white", textColor: "black", content: "Section 1" },
+    { color: "black", textColor: "white", content: "Section 2" },
+    { color: "white", textColor: "black", content: "Section 3" },
   ];
 
   return (
     <div>
-      <header id="sticky-header" style={{ backgroundColor: headerColor }}>
+      <header id="sticky-header" style={headerStyle}>
         Sticky Header
       </header>
       {sections.map((section, index) => (
         <div
           key={index}
           className="section"
-          style={{ backgroundColor: section.color, height: "100vh" }}
+          style={{
+            backgroundColor: section.color,
+            color: section.textColor,
+            height: "100vh",
+          }}
           data-color={section.color}
+          data-text-color={section.textColor}
         >
           <h2>{section.content}</h2>
         </div>
